@@ -1,0 +1,74 @@
+{
+  "overall_risk_rating": "medium",
+  "executive_summary": "The whitepaper outlines an innovative decentralized consensus architecture. While cryptographic principles are sound, key operational risks stem from majority hashrate concentration vulnerabilities and confirmation depth latency before finality.",
+  "top_risks": [
+    {
+      "category": "CENTRALIZATION",
+      "severity": "HIGH",
+      "description": "51% mining power majority can theoretically rewrite recent block history and double-spend."
+    },
+    {
+      "category": "SECURITY",
+      "severity": "MEDIUM",
+      "description": "Settlement latency requires multiple confirmation blocks before economic finality is guaranteed."
+    },
+    {
+      "category": "ECONOMIC DESIGN",
+      "severity": "MEDIUM",
+      "description": "Long-term security budget transitions from block subsidies to transaction fees with unknown fee market stability."
+    }
+  ],
+  "total_findings_analyzed": 8,
+  "document_name": "sample_whitepaper",
+  "generated_at": "2026-09-14 05:21",
+  "all_findings": [
+    {
+      "category": "CENTRALIZATION",
+      "severity": "HIGH",
+      "description": "Consensus vulnerability identified in section 1: hash power concentration risk.",
+      "evidence_quote": "Any attacker controlling majority computing power can outpace honest nodes."
+    },
+    {
+      "category": "SECURITY",
+      "severity": "MEDIUM",
+      "description": "Confirmation latency and chain reorganization risk prior to settlement finality.",
+      "evidence_quote": "Nodes accept the longest proof-of-work chain as authoritative truth."
+    },
+    {
+      "category": "CENTRALIZATION",
+      "severity": "HIGH",
+      "description": "Consensus vulnerability identified in section 2: hash power concentration risk.",
+      "evidence_quote": "Any attacker controlling majority computing power can outpace honest nodes."
+    },
+    {
+      "category": "SECURITY",
+      "severity": "MEDIUM",
+      "description": "Confirmation latency and chain reorganization risk prior to settlement finality.",
+      "evidence_quote": "Nodes accept the longest proof-of-work chain as authoritative truth."
+    },
+    {
+      "category": "CENTRALIZATION",
+      "severity": "HIGH",
+      "description": "Consensus vulnerability identified in section 3: hash power concentration risk.",
+      "evidence_quote": "Any attacker controlling majority computing power can outpace honest nodes."
+    },
+    {
+      "category": "SECURITY",
+      "severity": "MEDIUM",
+      "description": "Confirmation latency and chain reorganization risk prior to settlement finality.",
+      "evidence_quote": "Nodes accept the longest proof-of-work chain as authoritative truth."
+    },
+    {
+      "category": "CENTRALIZATION",
+      "severity": "HIGH",
+      "description": "Consensus vulnerability identified in section 4: hash power concentration risk.",
+      "evidence_quote": "Any attacker controlling majority computing power can outpace honest nodes."
+    },
+    {
+      "category": "SECURITY",
+      "severity": "MEDIUM",
+      "description": "Confirmation latency and chain reorganization risk prior to settlement finality.",
+      "evidence_quote": "Nodes accept the longest proof-of-work chain as authoritative truth."
+    }
+  ]
+}
