@@ -30,6 +30,8 @@ from rich.progress import track
 from rich.panel import Panel
 import tiktoken
 
+from model_router import get_model_for_task
+
 load_dotenv()
 client = OpenAI()
 console = Console()
@@ -205,7 +207,10 @@ def chunk_text(text: str, max_tokens: int = 2000) -> list[str]:
 # STEP 3: PER-CHUNK ANALYSIS (OpenAI API with retries)
 # ═══════════════════════════════════════════════════════════
 
-def analyze_chunk(chunk_text: str, chunk_num: int, retries: int = 3, model: str = "gpt-4o-mini", mock: bool = False) -> ChunkAnalysis | None:
+def analyze_chunk(chunk_text: str, chunk_num: int, retries: int = 3, model: str = None, mock: bool = False) -> ChunkAnalysis | None:
+    if model is None:
+        model = get_model_for_task("whitepaper_chunk_review")
+        
     if mock:
         return ChunkAnalysis(
             findings=[
@@ -265,7 +270,10 @@ def analyze_chunk(chunk_text: str, chunk_num: int, retries: int = 3, model: str 
 # STEP 4: SYNTHESIS (OpenAI API)
 # ═══════════════════════════════════════════════════════════
 
-def synthesize_report(all_findings: List[Finding], doc_name: str, model: str = "gpt-4o-mini", mock: bool = False) -> FinalReport:
+def synthesize_report(all_findings: List[Finding], doc_name: str, model: str = None, mock: bool = False) -> FinalReport:
+    if model is None:
+        model = get_model_for_task("whitepaper_synthesis")
+        
     if mock:
         return FinalReport(
             overall_risk_rating="medium",
@@ -375,7 +383,7 @@ def save_markdown_report(report: FinalReport, output_path: str):
 # MAIN PIPELINE
 # ═══════════════════════════════════════════════════════════
 
-def analyze_whitepaper(pdf_path: str, model: str = "gpt-4o-mini", mock: bool = False):
+def analyze_whitepaper(pdf_path: str, model: str = None, mock: bool = False):
     doc_name = Path(pdf_path).stem
     
     mode_label = " [MOCK DEMO MODE]" if mock else ""
@@ -434,7 +442,7 @@ if __name__ == "__main__":
         description="Analyze a DeFi/crypto whitepaper PDF for risk signals using OpenAI."
     )
     parser.add_argument("pdf_path", help="Path to the whitepaper PDF file")
-    parser.add_argument("--model", default="gpt-4o-mini", help="OpenAI model to use (default: gpt-4o-mini)")
+    parser.add_argument("--model", default=None, help="OpenAI model to use (default: auto-routed)")
     parser.add_argument("--mock", action="store_true", help="Run in mock demo mode without calling OpenAI API (free test)")
     args = parser.parse_args()
     

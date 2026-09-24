@@ -20,7 +20,7 @@
   ],
   "total_findings_analyzed": 8,
   "document_name": "sample_whitepaper",
-  "generated_at": "2026-09-14 05:21",
+  "generated_at": "2026-09-19 10:44",
   "all_findings": [
     {
       "category": "CENTRALIZATION",
